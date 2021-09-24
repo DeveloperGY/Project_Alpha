@@ -15,3 +15,16 @@ int ef::Renderer::init()
 	this->window.create(sf::VideoMode(this->width, this->height), this->title, sf::Style::Close | sf::Style::Titlebar);
 	return 0;
 }
+
+int ef::Renderer::update()
+{
+	this->window.setTitle(this->title);
+}
+
+// Getters / Setters
+
+void ef::Renderer::setTitle(std::string title)
+{
+	this->title = title;
+	return;
+}
