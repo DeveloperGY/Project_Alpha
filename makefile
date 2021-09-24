@@ -9,5 +9,5 @@ debug:
 run:
 	./bin/run
 
-rel:
+build:
 	g++ src/*.cpp -o release/run $(args) $(libs)
