@@ -5,10 +5,14 @@ libs = -lsfml-graphics -lsfml-window -lsfml-system
 make: debug run
 
 debug:
-	g++ $(src) -o bin/run $(args) $(libs)
+	g++ $(src) -o bin/debug/run $(args) $(libs)
 
 run:
-	./bin/run
+	./bin/debug/run
 
 build:
-	g++ $(src) -o release/run $(args) $(libs)
+	g++ $(src) -o bin/release/run $(args) $(libs)
+
+clean:
+	rm bin/debug/run
+	rm bin/release/run
