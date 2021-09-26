@@ -4,6 +4,9 @@
 
 namespace ef
 {
+	/*	Game Engine Class
+	*
+	*/
 	class Engine
 	{
 	private:
@@ -23,6 +26,11 @@ namespace ef
 		*	@return Returns 0 if succeeded
 		*/
 		int init();
+
+		/*	Exits the game and cleans up the engine
+		*	@return Returns 0 if succeeded
+		*/
+		int exit();
 
 		/* 	Game Loop
 		*

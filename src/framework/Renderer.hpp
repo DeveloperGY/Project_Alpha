@@ -3,6 +3,9 @@
 
 namespace ef
 {
+	/*	Renderer Class
+	*
+	*/
 	class Renderer
 	{
 	private:

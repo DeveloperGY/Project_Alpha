@@ -5,6 +5,9 @@
 
 namespace ef
 {
+	/*	Window Class
+	*
+	*/
 	class Window
 	{
 	private:
@@ -17,7 +20,7 @@ namespace ef
 
 	public:
 
-		/* Constructor
+		/* 	Constructor
 		*
 		*/
 		Window();
@@ -32,7 +35,21 @@ namespace ef
 		*/
 		int update();
 
-		// Getters/Setters
+		/* 	Polls the Window Events
+		* 	Handles all window based events
+
+		*	MAKE SPERATE EVENT FUNCTIONS FOR OTHER EVENTS
+		* 	EX: window.keyPressed(char key) returns true if specific key is pressed
+		*/
+		void pollEvents();
+
+		/*	Displays the Window
+		*
+		*/
+		void display();
+
+
+	// 	Getters/Setters
 
 		/* 	Sets the Window Title
 		*	
@@ -43,5 +60,10 @@ namespace ef
 		*	If a parameter is set to 0, it will stay as is.
 		*/
 		void setDimensions(int width, int height);
+
+		/*	Tells whether or not the window is open
+		*	@return Returns True if the window is open
+		*/
+		bool isOpen();
 	};
 }

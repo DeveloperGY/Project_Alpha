@@ -23,6 +23,25 @@ int ef::Window::update()
 	return 0;
 }
 
+void ef::Window::pollEvents()
+{
+	sf::Event ev;
+	while(this->window.pollEvent(ev))
+	{
+		if(ev.type == sf::Event::Closed)
+		{
+			this->window.close();
+		}
+	}
+	return;
+}
+
+void ef::Window::display()
+{
+	this->window.display();
+	return;
+}
+
 void ef::Window::setTitle(std::string title)
 {
 	this->title = title;
@@ -42,4 +61,9 @@ void ef::Window::setDimensions(int width, int height)
 	}
 
 	return;
+}
+
+bool ef::Window::isOpen()
+{
+	return this->window.isOpen();
 }

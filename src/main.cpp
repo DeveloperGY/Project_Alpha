@@ -10,6 +10,10 @@ int main(int argc, char* argv[])
 
 	// insert game scene creation here
 
+	// pass game to engine
+
+	// engine.gameInit();
+
 	engine.loop();
 	return 0;
 }

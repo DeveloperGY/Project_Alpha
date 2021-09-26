@@ -13,11 +13,26 @@ int ef::Engine::init()
 	return 0;
 }
 
+int ef::Engine::exit()
+{
+	this->running = false;
+	return 0;
+}
+
 void ef::Engine::loop()
 {
 	while(this->running)
 	{
-		this->running = false; // temporary
+		this->window.pollEvents();
+
+
+
+		this->window.display();
+
+		if(!this->window.isOpen())
+		{
+			this->exit();
+		}
 	}
 	return;
 }
