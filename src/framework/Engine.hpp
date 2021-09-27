@@ -1,6 +1,14 @@
 #pragma once
 #include "Window.hpp"
 #include "Renderer.hpp"
+#include "InputManager.hpp"
+
+/*	TODO:
+	Make Event Manager
+	Make Event Struct
+	Make Input Manager
+	Make Input Struct
+*/
 
 namespace ef
 {
@@ -12,6 +20,7 @@ namespace ef
 	private:
 		ef::Window window;
 		ef::Renderer renderer;
+		ef::InputManager inputManager;
 
 		bool running;
 

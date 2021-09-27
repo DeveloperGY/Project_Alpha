@@ -2,13 +2,27 @@
 
 ef::Engine::Engine()
 {
-	this->window.init();
-	this->renderer.init(&this->window);
 	this->running = false;
+	return;
 }
 
 int ef::Engine::init()
 {
+	if(this->window.init())
+	{
+		return -1;
+	}
+
+	if(this->renderer.init(&this->window))
+	{
+		return -1;
+	}
+
+	if(this->inputManager.init(&this->window))
+	{
+		return -1;
+	}
+
 	this->running = true;
 	return 0;
 }
@@ -25,7 +39,7 @@ void ef::Engine::loop()
 	{
 		this->window.pollEvents();
 
-
+		// Handle Game
 
 		this->window.display();
 

@@ -37,9 +37,6 @@ namespace ef
 
 		/* 	Polls the Window Events
 		* 	Handles all window based events
-
-		*	MAKE SPERATE EVENT FUNCTIONS FOR OTHER EVENTS
-		* 	EX: window.keyPressed(char key) returns true if specific key is pressed
 		*/
 		void pollEvents();
 
