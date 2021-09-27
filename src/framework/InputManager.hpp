@@ -3,6 +3,20 @@
 
 namespace ef
 {
+	enum InputType
+	{
+		Mouse = 0,
+		Key,
+	};
+
+	struct Input
+	{
+		ef::InputType type;
+		int mouseX;
+		int mouseY;
+		char key;
+	};
+
 	/*	Input Manager Class
 	*	Manages Window Inputs
 	*/
