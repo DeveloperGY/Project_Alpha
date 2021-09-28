@@ -12,7 +12,11 @@ int main(int argc, char* argv[])
 
 	// pass game to engine
 
+	//TODO: Make loading window appear (use a thread to init the game)
+
 	// engine.gameInit();
+
+	//TODO: Make Loading window close
 
 	engine.loop();
 	return 0;

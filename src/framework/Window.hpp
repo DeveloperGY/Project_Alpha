@@ -29,11 +29,6 @@ namespace ef
 		*	@return Returns 0 if succeeded
 		*/
 		int init(int width = 1440, int height = 960, std::string title = "Window");
-		
-		/*	Updates the Window Object
-		*	@return Returns 0 if succeeded
-		*/
-		int update();
 
 		/* 	Polls the Window Events
 		* 	Handles all window based events

@@ -16,13 +16,6 @@ int ef::Window::init(int width, int height, std::string title)
 	return 0;
 }
 
-int ef::Window::update()
-{
-	this->window.setSize(sf::Vector2u(this->width, this->height));
-	this->window.setTitle(this->title);
-	return 0;
-}
-
 void ef::Window::pollEvents()
 {
 	sf::Event ev;
@@ -45,6 +38,7 @@ void ef::Window::display()
 void ef::Window::setTitle(std::string title)
 {
 	this->title = title;
+	this->window.setTitle(this->title);
 	return;
 }
 
@@ -59,6 +53,8 @@ void ef::Window::setDimensions(int width, int height)
 	{
 		this->height = height;
 	}
+
+	this->window.setSize(sf::Vector2u(this->width, this->height));
 
 	return;
 }
