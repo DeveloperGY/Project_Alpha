@@ -7,10 +7,10 @@
 #include <iostream>
 
 /*	TODO:
-	Make Event Manager
-	Make Event Struct
-	Make Input Manager
-	Make Input Struct
+	Asset Manager
+	Audio Player
+	Physics Engine
+	ECS
 */
 
 namespace ef

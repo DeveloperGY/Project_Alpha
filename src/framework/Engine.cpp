@@ -57,29 +57,46 @@ void ef::Engine::loop()
 
 void ef::Engine::initGame()
 {
+	bool finLoad = false;
+	bool joinedThread = false;
+
 	// Lambda func for thread
-	auto load = [] () -> void
+	auto load = [&finLoad] () -> void
 	{
+		std::cout << "Loading Start!\n";
+
 		// Initialize game
 		for(int i=0;i<10000;i++)
 		{
 			std::cout << "Loading...\n";
 		}
+
+		// Set finsihed to true when game is loaded
+		finLoad = true;
+		std::cout << "Loading Complete!\n";
 		return;
 	};
 
 	// Create loading window
 	ef::Window loadingWin;
 	loadingWin.init("Project_Alpha", 800, 600);
-	std::cout << "Loading Start!\n";
 	
 	// Init game [thread]
 	std::thread init(load);
 
-	// display loading screen
-	loadingWin.display();
-	init.join();
-	std::cout << "Loading Complete!\n";
+	// display loading screen while thread is running
+	while(!joinedThread)
+	{
+		loadingWin.pollEvents();
+		loadingWin.display();
+
+		if(finLoad)
+		{
+			init.join();
+			joinedThread = true;
+		}
+	}
+
 	loadingWin.close();
 	return;
 }
