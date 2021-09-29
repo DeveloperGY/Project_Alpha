@@ -3,6 +3,9 @@
 #include "Renderer.hpp"
 #include "InputManager.hpp"
 
+#include <thread>
+#include <iostream>
+
 /*	TODO:
 	Make Event Manager
 	Make Event Struct
@@ -40,6 +43,11 @@ namespace ef
 		*	@return Returns 0 if succeeded
 		*/
 		int exit();
+
+		/*	Initializes the game with a loading window
+		*
+		*/
+		void initGame();
 
 		/* 	Game Loop
 		*

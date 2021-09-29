@@ -35,6 +35,10 @@ int ef::Engine::exit()
 
 void ef::Engine::loop()
 {
+	// Initialize Game
+	this->initGame();
+
+	// Start Loop
 	while(this->running)
 	{
 		this->window.pollEvents();
@@ -48,5 +52,34 @@ void ef::Engine::loop()
 			this->exit();
 		}
 	}
+	return;
+}
+
+void ef::Engine::initGame()
+{
+	// Lambda func for thread
+	auto load = [] () -> void
+	{
+		// Initialize game
+		for(int i=0;i<10000;i++)
+		{
+			std::cout << "Loading...\n";
+		}
+		return;
+	};
+
+	// Create loading window
+	ef::Window loadingWin;
+	loadingWin.init("Project_Alpha", 800, 600);
+	std::cout << "Loading Start!\n";
+	
+	// Init game [thread]
+	std::thread init(load);
+
+	// display loading screen
+	loadingWin.display();
+	init.join();
+	std::cout << "Loading Complete!\n";
+	loadingWin.close();
 	return;
 }

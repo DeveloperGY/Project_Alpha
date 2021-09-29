@@ -1,5 +1,5 @@
 src = src/*.cpp src/framework/*.cpp
-args = -std=c++17
+args = -std=c++17 -pthread
 libs = -lsfml-graphics -lsfml-window -lsfml-system
 
 make: debug run

@@ -5,13 +5,13 @@ ef::Window::Window()
 	return;
 }
 
-int ef::Window::init(int width, int height, std::string title)
+int ef::Window::init(std::string title, int width, int height)
 {
 	this->width = width;
 	this->height = height;
 	this->title = title;
 
-	this->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
+	this->window.create(sf::VideoMode(this->width, this->height), this->title, sf::Style::Close | sf::Style::Titlebar);
 
 	return 0;
 }
@@ -62,4 +62,10 @@ void ef::Window::setDimensions(int width, int height)
 bool ef::Window::isOpen()
 {
 	return this->window.isOpen();
+}
+
+void ef::Window::close()
+{
+	this->window.close();
+	return;
 }
