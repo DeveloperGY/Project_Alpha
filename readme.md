@@ -4,6 +4,4 @@ Project Alpha is a 2d sidescroller game where you fight waves of enemies, gettin
 
 makes use of sfml
 
-WORK ON INPUT SYSTEM/WINDOW LOOP
-
-ADD EVENT MANAGAER
+Framework name: Iota Engine
