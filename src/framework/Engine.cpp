@@ -12,13 +12,18 @@ int ef::Engine::init()
 	{
 		return -1;
 	}
-
+	
 	if(this->renderer.init(&this->window))
 	{
 		return -1;
 	}
 
 	if(this->inputManager.init(&this->window))
+	{
+		return -1;
+	}
+
+	if(this->assetManager.init())
 	{
 		return -1;
 	}
@@ -66,10 +71,7 @@ void ef::Engine::initGame()
 		std::cout << "Loading Start!\n";
 
 		// Initialize game
-		for(int i=0;i<10000;i++)
-		{
-			std::cout << "Loading...\n";
-		}
+		std::cout << "Loading...\n";
 
 		// Set finsihed to true when game is loaded
 		finLoad = true;

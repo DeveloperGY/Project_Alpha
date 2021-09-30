@@ -2,6 +2,7 @@
 #include "Window.hpp"
 #include "Renderer.hpp"
 #include "InputManager.hpp"
+#include "AssetManager.hpp"
 
 #include <thread>
 #include <iostream>
@@ -24,6 +25,7 @@ namespace ef
 		ef::Window window;
 		ef::Renderer renderer;
 		ef::InputManager inputManager;
+		ef::AssetManager assetManager;
 
 		bool running;
 
