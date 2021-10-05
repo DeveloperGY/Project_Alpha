@@ -7,7 +7,20 @@ ef::AssetManager::AssetManager()
 
 int ef::AssetManager::init()
 {
-	// TODO: make default sound/texture
+	// TODO: make default sound
+
+	sf::Image img;
+	img.create(2,2);
+	img.setPixel(0, 0, sf::Color(0, 0, 0));
+	img.setPixel(1, 1, sf::Color(0, 0, 0));
+
+	img.setPixel(0, 1, sf::Color(255, 0, 255));
+	img.setPixel(1, 0, sf::Color(255, 0, 255));
+
+	sf::Texture tex;
+	this->textures.insert({"_r", tex});
+	this->textures.at("_r").loadFromImage(img);
+
 	// TODO: make engine/framework icon
 	return 0;
 }
@@ -30,7 +43,7 @@ int ef::AssetManager::addTexture(std::string name, std::string path)
 		{
 			//image not found
 			std::cout << "Error: Texture file not found!\n";
-			this->textures.erase(name); // TODO: replace with replacement texture
+			this->textures.at(name) = this->textures.at("_r");
 			return -1;
 		}
 		else
@@ -80,8 +93,7 @@ sf::Texture ef::AssetManager::getTexture(std::string name)
 	}
 	else
 	{
-		sf::Texture text; // TODO: replace with replacement texture
-		return text;
+		return this->textures.at("_r");
 	}
 }
 
