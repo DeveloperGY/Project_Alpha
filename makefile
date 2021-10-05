@@ -1,6 +1,6 @@
 src = src/*.cpp src/framework/*.cpp
 args = -std=c++17 -pthread
-libs = -lsfml-graphics -lsfml-window -lsfml-system
+libs = -lsfml-graphics -lsfml-window -lsfml-network -lsfml-audio -lsfml-system
 
 make: debug run
 
