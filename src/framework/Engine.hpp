@@ -3,15 +3,18 @@
 #include "Renderer.hpp"
 #include "InputManager.hpp"
 #include "AssetManager.hpp"
+#include "ecs/ECS.hpp"
 
 #include <thread>
 #include <iostream>
 
 /*	TODO:
 	Asset Manager
+	Renderer
 	Audio Player
 	Physics Engine
-	ECS
+	TODO: TODO: ECS
+	TODO: make systems for components to interact with Engine
 */
 
 namespace ef

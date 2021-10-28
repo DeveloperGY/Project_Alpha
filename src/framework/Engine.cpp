@@ -13,7 +13,7 @@ int ef::Engine::init()
 		return -1;
 	}
 	
-	if(this->renderer.init(&this->window))
+	if(this->renderer.init(&this->window)) // Also pass the asset manager too
 	{
 		return -1;
 	}

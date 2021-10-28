@@ -10,6 +10,7 @@ namespace ef
 	{
 	private:
 		ef::Window* window;
+		
 	public:
 		Renderer();
 
