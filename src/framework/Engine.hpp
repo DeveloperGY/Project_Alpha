@@ -13,8 +13,6 @@
 	Renderer
 	Audio Player
 	Physics Engine
-	TODO: TODO: ECS
-	TODO: make systems for components to interact with Engine
 */
 
 namespace ef
@@ -29,6 +27,7 @@ namespace ef
 		ef::Renderer renderer;
 		ef::InputManager inputManager;
 		ef::AssetManager assetManager;
+		ef::ComponentManager componentManager;
 
 		bool running;
 

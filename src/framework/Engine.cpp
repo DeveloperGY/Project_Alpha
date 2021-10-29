@@ -28,6 +28,11 @@ int ef::Engine::init()
 		return -1;
 	}
 
+	if(this->componentManager.init())
+	{
+		return -1;
+	}
+
 	this->running = true;
 	return 0;
 }
