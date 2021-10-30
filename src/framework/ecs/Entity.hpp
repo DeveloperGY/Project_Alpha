@@ -5,6 +5,9 @@ namespace ef
 {
 	class Entity
 	{
+
+		static unsigned int CURRENT_ID;
+
 		private:
 			// Entity ID
 			unsigned int id;
@@ -18,7 +21,7 @@ namespace ef
 			/*	Initializes the Entity
 			*	@return returns 0 if succeded
 			*/
-			int init(unsigned int id);
+			int init();
 
 			/*	Returns the Entity ID
 			*	@return unsigned int Entity ID
@@ -28,6 +31,6 @@ namespace ef
 			/* Defined behaviour for the entity
 			*
 			*/
-			virtual void behaviour() = 0;
+			virtual void behaviour();
 	};
 }

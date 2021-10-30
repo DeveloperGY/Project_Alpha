@@ -28,12 +28,14 @@ namespace ef
 		*/
 		int init();
 
-		/* 	Loads an Image File into the Asset Manager
+		/* 	Loads an Image File into the Asset Manager. 
+		*	Be sure to set the path relative to the executable
 		*	@return Returns 0 if succeded
 		*/
-		int addTexture(std::string, std::string);
+		int addTexture(std::string name, std::string path);
 
-		/* 	Loads a Sound File into the Asset Manager
+		/* 	Loads a Sound File into the Asset Manager. 
+		*	Be sure to set the path relative to the executable
 		*	@return Returns 0 if succeded
 		*/
 		int addSound(std::string, std::string);

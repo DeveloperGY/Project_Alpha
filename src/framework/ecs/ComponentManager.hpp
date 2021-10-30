@@ -1,5 +1,6 @@
 #pragma once
 #include "Components.hpp"
+#include "../AssetManager.hpp"
 #include <vector>
 
 namespace ef
@@ -10,8 +11,11 @@ namespace ef
 			// Start amount of components
 			unsigned int startAmount;
 
+			ef::AssetManager* am;
+
 			std::vector<ef::Components::Transform> transforms;
 			std::vector<ef::Components::Motion> motions;
+			std::vector<ef::Components::Sprite> sprites;
 
 		public:
 			/*	ComponentManager Constructor
@@ -22,12 +26,22 @@ namespace ef
 			/*	Initialize the Component Manager
 			*	@return Returns 0 if succeded
 			*/
-			int init();
+			int init(ef::AssetManager* am);
 
 			/*	Returns the specified component of an entity
 			*	@return returns Component or if component doesnt exist returns nullptr
 			*/
-			ef::Components::Component* getComponent(unsigned int entityId, ef::Components::compID);
+			ef::Components::Transform* getTransform(unsigned int entityId);
+
+			/*	Returns the specified component of an entity
+			*	@return returns Component or if component doesnt exist returns nullptr
+			*/
+			ef::Components::Motion* getMotion(unsigned int entityId);
+
+			/*	Returns the specified component of an entity
+			*	@return returns Component or if component doesnt exist returns nullptr
+			*/
+			ef::Components::Sprite* getSprite(unsigned int entityId);
 
 			/*	Adds a Component to an Entity
 			*	@returns 0 if succeded
@@ -38,5 +52,10 @@ namespace ef
 			*	@returns 0 if succeded
 			*/
 			int removeComponent(unsigned int entityId, ef::Components::compID);
+
+			/*	Sets the size of a sprite
+			*
+			*/
+			void setSpriteSize(unsigned int entityId, float width, float height);
 	};
 }

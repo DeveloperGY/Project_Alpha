@@ -1,5 +1,7 @@
 #pragma once
 #include "../Utility.hpp"
+#include <SFML/Graphics.hpp>
+#include <string>
 
 namespace ef
 {
@@ -11,6 +13,7 @@ namespace ef
 			COMPONENT,
 			TRANSFORM,
 			MOTION,
+			SPRITE
 		};
 
 		// Virtual struct to inherit from
@@ -56,6 +59,19 @@ namespace ef
 				this->velocity.y = 0;
 				this->acceleration.x = 0;
 				this->acceleration.y = 0;
+				this->entityID = 0;
+				return 0;
+			}
+		};
+
+		struct Sprite: public Component
+		{
+			std::string textureKey;
+			sf::Sprite sprite;
+
+			int init()
+			{
+				this->textureKey = "";
 				this->entityID = 0;
 				return 0;
 			}

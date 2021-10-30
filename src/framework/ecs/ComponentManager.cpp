@@ -6,10 +6,13 @@ ef::ComponentManager::ComponentManager()
 	return;
 }
 
-int ef::ComponentManager::init()
+int ef::ComponentManager::init(ef::AssetManager* am)
 {
+	this->am = am;
+
 	ef::Components::Transform t;
 	ef::Components::Motion m;
+	ef::Components::Sprite s;
 	if(t.init())
 	{
 		return -1;
@@ -18,44 +21,61 @@ int ef::ComponentManager::init()
 	{
 		return -1;
 	}
+	if(s.init())
+	{
+		return -1;
+	}
 
 	for(int i=0; i<this->startAmount; i++)
 	{
 		this->transforms.push_back(t);
 		this->motions.push_back(m);
+		this->sprites.push_back(s);
 	}
 	return 0;
 }
 
-ef::Components::Component* ef::ComponentManager::getComponent(unsigned int entityId, ef::Components::compID compId)
+ef::Components::Transform* ef::ComponentManager::getTransform(unsigned int entityId)
 {
-	ef::Components::Component* cp = nullptr;
+	ef::Components::Transform* cp = nullptr;
 	
-	switch(compId)
+	for(int i = 0; i<this->transforms.size(); i++)
 	{
-		case ef::Components::TRANSFORM:
+		if(this->transforms[i].entityID == entityId)
 		{
-			for(int i = 0; i<this->transforms.size(); i++)
-			{
-				if(this->transforms[i].entityID == entityId)
-				{
-					cp = &this->transforms[i];
-					break;
-				}
-			}
+			cp = &this->transforms[i];
 			break;
 		}
+	}
 
-		case ef::Components::MOTION:
+	return cp;
+}
+
+ef::Components::Motion* ef::ComponentManager::getMotion(unsigned int entityId)
+{
+	ef::Components::Motion* cp = nullptr;
+	
+	for(int i = 0; i<this->motions.size(); i++)
+	{
+		if(this->motions[i].entityID == entityId)
 		{
-			for(int i = 0; i<this->motions.size(); i++)
-			{
-				if(this->motions[i].entityID == entityId)
-				{
-					cp = &this->motions[i];
-					break;
-				}
-			}
+			cp = &this->motions[i];
+			break;
+		}
+	}
+
+	return cp;
+}
+
+ef::Components::Sprite* ef::ComponentManager::getSprite(unsigned int entityId)
+{
+	ef::Components::Sprite* cp = nullptr;
+	
+	for(int i = 0; i<this->sprites.size(); i++)
+	{
+		if(this->sprites[i].entityID == entityId)
+		{
+			cp = &this->sprites[i];
 			break;
 		}
 	}
@@ -85,6 +105,19 @@ int ef::ComponentManager::addComponent(unsigned int entityId, ef::Components::co
 			for(int i = 0; i<this->motions.size(); i++)
 			{
 				if(this->motions[i].entityID == entityId)
+				{
+					return -1;
+					break;
+				}
+			}
+			break;
+		}
+
+		case ef::Components::SPRITE:
+		{
+			for(int i = 0; i<this->sprites.size(); i++)
+			{
+				if(this->sprites[i].entityID == entityId)
 				{
 					return -1;
 					break;
@@ -133,6 +166,25 @@ int ef::ComponentManager::addComponent(unsigned int entityId, ef::Components::co
 
 			break;
 		}
+
+		case ef::Components::SPRITE:
+		{
+			for(int i = 0; i<this->sprites.size(); i++)
+			{
+				if(this->sprites[i].entityID == 0)
+				{
+					this->sprites[i].entityID == entityId;
+					break;
+				}
+			}
+
+			ef::Components::Sprite t;
+			t.init();
+			t.entityID = entityId;
+			this->sprites.push_back(t);
+
+			break;
+		}
 	}
 
 	return 0;
@@ -173,7 +225,32 @@ int ef::ComponentManager::removeComponent(unsigned int entityId, ef::Components:
 			}
 			break;
 		}
+
+		case ef::Components::SPRITE:
+		{
+			for(int i = 0; i<this->sprites.size(); i++)
+			{
+				if(this->sprites[i].entityID == entityId)
+				{
+					ef::Components::Sprite t;
+					t.init();
+
+					this->sprites.at(i) = t;
+					break;
+				}
+			}
+			break;
+		}
 	}
 
 	return 0;
+}
+
+void ef::ComponentManager::setSpriteSize(unsigned int entityId, float width, float height)
+{
+	sf::Vector2u vec = this->am->getTexture(this->getSprite(entityId)->textureKey).getSize();
+
+	ef::Components::Sprite* s = this->getSprite(entityId);
+	s->sprite.scale(width/vec.x, height/vec.y);
+	return;
 }

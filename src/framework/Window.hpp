@@ -62,5 +62,10 @@ namespace ef
 		*
 		*/
 		void close();
+
+		/* Draws a sprite
+		*
+		*/
+		void draw(sf::Sprite sprite);
 	};
 }

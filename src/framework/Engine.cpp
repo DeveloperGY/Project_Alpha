@@ -13,7 +13,7 @@ int ef::Engine::init()
 		return -1;
 	}
 	
-	if(this->renderer.init(&this->window)) // Also pass the asset manager too
+	if(this->renderer.init(&this->window, &this->componentManager, &this->assetManager)) // Also pass the asset manager too
 	{
 		return -1;
 	}
@@ -28,10 +28,12 @@ int ef::Engine::init()
 		return -1;
 	}
 
-	if(this->componentManager.init())
+	if(this->componentManager.init(&this->assetManager))
 	{
 		return -1;
 	}
+	
+	this->assetManager.addTexture("IOTA", "../../src/framework/imgs/iota.png");
 
 	this->running = true;
 	return 0;
@@ -73,10 +75,18 @@ void ef::Engine::initGame()
 	// Lambda func for thread
 	auto load = [&finLoad] () -> void
 	{
+		sf::Clock clock;
+		
 		std::cout << "Loading Start!\n";
 
 		// Initialize game
 		std::cout << "Loading...\n";
+
+		clock.restart();
+		while(clock.getElapsedTime().asMilliseconds() < 5000)
+		{
+			// buffer time to see loading window
+		}
 
 		// Set finsihed to true when game is loaded
 		finLoad = true;
@@ -87,7 +97,18 @@ void ef::Engine::initGame()
 	// Create loading window
 	ef::Window loadingWin;
 	loadingWin.init("Project_Alpha", 800, 600);
-	
+	ef::Entity loadImg;
+	loadImg.init();
+
+	this->componentManager.addComponent(loadImg.getId(), ef::Components::TRANSFORM);
+	this->componentManager.addComponent(loadImg.getId(), ef::Components::SPRITE);
+
+	this->componentManager.getSprite(loadImg.getId())->textureKey = "IOTA";
+
+	this->componentManager.getTransform(loadImg.getId())->x = 200;
+	this->componentManager.getTransform(loadImg.getId())->y = 100;
+	this->componentManager.setSpriteSize(loadImg.getId(), 400, 400);
+
 	// Init game [thread]
 	std::thread init(load);
 
@@ -95,6 +116,7 @@ void ef::Engine::initGame()
 	while(!joinedThread)
 	{
 		loadingWin.pollEvents();
+		this->renderer.render(loadImg.getId(), &loadingWin);
 		loadingWin.display();
 
 		if(finLoad)

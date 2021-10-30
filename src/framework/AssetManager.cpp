@@ -11,15 +11,25 @@ int ef::AssetManager::init()
 
 	sf::Image img;
 	img.create(2,2);
-	img.setPixel(0, 0, sf::Color(0, 0, 0));
-	img.setPixel(1, 1, sf::Color(0, 0, 0));
 
-	img.setPixel(0, 1, sf::Color(255, 0, 255));
-	img.setPixel(1, 0, sf::Color(255, 0, 255));
+	for(int i=0; i<2; i++)
+	{
+		for(int j=0; j<2; j++)
+		{
+			if((i >= 1 && j >= 1) || ((i < 1 && j < 1)))
+			{
+				img.setPixel(j, i, sf::Color(0, 0, 0));
+			}
+			else
+			{
+				img.setPixel(j, i, sf::Color(255, 0, 255, 255));
+			}
+		}
+	}
 
 	sf::Texture tex;
+	tex.loadFromImage(img);
 	this->textures.insert({"_r", tex});
-	this->textures.at("_r").loadFromImage(img);
 
 	// TODO: make engine/framework icon
 	return 0;

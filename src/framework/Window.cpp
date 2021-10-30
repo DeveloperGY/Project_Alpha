@@ -69,3 +69,9 @@ void ef::Window::close()
 	this->window.close();
 	return;
 }
+
+void ef::Window::draw(sf::Sprite sprite)
+{
+	this->window.draw(sprite);
+	return;
+}

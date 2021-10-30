@@ -9,10 +9,9 @@
 #include <iostream>
 
 /*	TODO:
-	Asset Manager
-	Renderer
 	Audio Player
 	Physics Engine
+	ECS
 */
 
 namespace ef

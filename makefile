@@ -8,7 +8,12 @@ debug:
 	g++ $(src) -o bin/debug/run $(args) $(libs)
 
 run:
-	./bin/debug/run
+	cd bin/debug; \
+	./run
+
+run-release:
+	cd bin/release; \
+	./run
 
 build:
 	g++ $(src) -o bin/release/run $(args) $(libs)
