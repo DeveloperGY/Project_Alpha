@@ -33,7 +33,7 @@ int ef::Engine::init()
 		return -1;
 	}
 	
-	this->assetManager.addTexture("IOTA", "../../src/framework/imgs/iota.png");
+	this->assetManager.addTexture("IOTA", "../../src/framework/imgs/iota.png"); //TODO: temp
 
 	this->running = true;
 	return 0;

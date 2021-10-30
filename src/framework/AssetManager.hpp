@@ -16,6 +16,7 @@ namespace ef
 	private:
 		std::map<std::string, sf::Texture> textures;
 		std::map<std::string, sf::SoundBuffer> sounds;
+		std::map<std::string, sf::Music> music;
 
 	public:
 		/*	Asset Manager Constructor
@@ -39,6 +40,8 @@ namespace ef
 		*	@return Returns 0 if succeded
 		*/
 		int addSound(std::string, std::string);
+
+		// int addMusic(std::string name, std::string path);
 
 		/*	Gets a texture from the texture map
 		*	@return returns a texture if found or the replacement texture if not

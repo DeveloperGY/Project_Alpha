@@ -18,7 +18,7 @@
 namespace ef
 {
 	/*	Game Engine Class
-	*
+	*	Requires -pthread -lsfml-graphics -lsfml-window -lsfml-network -lsfml-audio -lsfml-system
 	*/
 	class Engine
 	{
