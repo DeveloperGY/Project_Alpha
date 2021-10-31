@@ -5,13 +5,20 @@ ef::Window::Window()
 	return;
 }
 
-int ef::Window::init(std::string title, int width, int height)
+int ef::Window::init(std::string title, int width, int height, bool loading)
 {
 	this->width = width;
 	this->height = height;
 	this->title = title;
 
-	this->window.create(sf::VideoMode(this->width, this->height), this->title, sf::Style::Close | sf::Style::Titlebar);
+	if(loading)
+	{
+		this->window.create(sf::VideoMode(this->width, this->height), this->title, sf::Style::None);
+	}
+	else
+	{
+		this->window.create(sf::VideoMode(this->width, this->height), this->title, sf::Style::Close | sf::Style::Titlebar);
+	}
 
 	return 0;
 }
@@ -73,5 +80,11 @@ void ef::Window::close()
 void ef::Window::draw(sf::Sprite sprite)
 {
 	this->window.draw(sprite);
+	return;
+}
+
+void ef::Window::clear(float r, float g, float b)
+{
+	this->window.clear(sf::Color(r, g, b));
 	return;
 }

@@ -55,6 +55,8 @@ void ef::Engine::loop()
 	{
 		this->window.pollEvents();
 
+		this->window.clear(0, 0, 0);
+
 		// Handle Game
 
 		this->window.display();
@@ -96,7 +98,7 @@ void ef::Engine::initGame()
 
 	// Create loading window
 	ef::Window loadingWin;
-	loadingWin.init("Project_Alpha", 800, 600);
+	loadingWin.init("Project_Alpha", 800, 600, true);
 	ef::Entity loadImg;
 	loadImg.init();
 
@@ -116,6 +118,7 @@ void ef::Engine::initGame()
 	while(!joinedThread)
 	{
 		loadingWin.pollEvents();
+		loadingWin.clear(0, 0, 0);
 		this->renderer.render(loadImg.getId(), &loadingWin);
 		loadingWin.display();
 
