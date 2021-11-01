@@ -1,6 +1,7 @@
 #pragma once
 #include "../Utility.hpp"
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <string>
 
 namespace ef
@@ -13,6 +14,7 @@ namespace ef
 			COMPONENT,
 			TRANSFORM,
 			MOTION,
+			SOUND,
 			SPRITE
 		};
 
@@ -72,6 +74,18 @@ namespace ef
 			int init()
 			{
 				this->textureKey = "";
+				this->entityID = 0;
+				return 0;
+			}
+		};
+
+		struct Sound: public Component
+		{
+			sf::Sound sound;
+			std::string soundKey;
+
+			int init()
+			{
 				this->entityID = 0;
 				return 0;
 			}

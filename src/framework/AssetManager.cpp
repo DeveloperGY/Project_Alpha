@@ -7,8 +7,6 @@ ef::AssetManager::AssetManager()
 
 int ef::AssetManager::init()
 {
-	// TODO: make default sound
-
 	sf::Image img;
 	img.create(2,2);
 

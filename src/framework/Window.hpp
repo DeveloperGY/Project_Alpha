@@ -28,7 +28,7 @@ namespace ef
 		/* 	Initializes the Window Object
 		*	@return Returns 0 if succeeded
 		*/
-		int init(std::string title = "Window", int width = 1440, int height = 960, bool loading = false);
+		int init(std::string title = "Window", int width = 1440, int height = 960, bool splash = false);
 
 		/* 	Polls the Window Events
 		* 	Handles all window based events

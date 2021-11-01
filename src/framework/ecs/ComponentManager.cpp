@@ -13,11 +13,17 @@ int ef::ComponentManager::init(ef::AssetManager* am)
 	ef::Components::Transform t;
 	ef::Components::Motion m;
 	ef::Components::Sprite s;
+	ef::Components::Sound so;
+
 	if(t.init())
 	{
 		return -1;
 	}
 	if(m.init())
+	{
+		return -1;
+	}
+	if(so.init())
 	{
 		return -1;
 	}
@@ -30,6 +36,7 @@ int ef::ComponentManager::init(ef::AssetManager* am)
 	{
 		this->transforms.push_back(t);
 		this->motions.push_back(m);
+		this->sounds.push_back(so);
 		this->sprites.push_back(s);
 	}
 	return 0;
@@ -38,7 +45,7 @@ int ef::ComponentManager::init(ef::AssetManager* am)
 ef::Components::Transform* ef::ComponentManager::getTransform(unsigned int entityId)
 {
 	ef::Components::Transform* cp = nullptr;
-	
+
 	for(int i = 0; i<this->transforms.size(); i++)
 	{
 		if(this->transforms[i].entityID == entityId)
@@ -67,10 +74,26 @@ ef::Components::Motion* ef::ComponentManager::getMotion(unsigned int entityId)
 	return cp;
 }
 
+ef::Components::Sound* ef::ComponentManager::getSound(unsigned int entityId)
+{
+	ef::Components::Sound* cp = nullptr;
+	
+	for(int i = 0; i<this->sounds.size(); i++)
+	{
+		if(this->sounds[i].entityID == entityId)
+		{
+			cp = &this->sounds[i];
+			break;
+		}
+	}
+
+	return cp;
+}
+
 ef::Components::Sprite* ef::ComponentManager::getSprite(unsigned int entityId)
 {
 	ef::Components::Sprite* cp = nullptr;
-	
+
 	for(int i = 0; i<this->sprites.size(); i++)
 	{
 		if(this->sprites[i].entityID == entityId)
@@ -113,6 +136,19 @@ int ef::ComponentManager::addComponent(unsigned int entityId, ef::Components::co
 			break;
 		}
 
+		case ef::Components::SOUND:
+		{
+			for(int i = 0; i<this->sounds.size(); i++)
+			{
+				if(this->sounds[i].entityID == entityId)
+				{
+					return -1;
+					break;
+				}
+			}
+			break;
+		}
+
 		case ef::Components::SPRITE:
 		{
 			for(int i = 0; i<this->sprites.size(); i++)
@@ -135,16 +171,18 @@ int ef::ComponentManager::addComponent(unsigned int entityId, ef::Components::co
 			{
 				if(this->transforms[i].entityID == 0)
 				{
-					this->transforms[i].entityID == entityId;
+					this->transforms[i].entityID = entityId;
+					break;
+				}
+				else if(i == this->transforms.size() - 1 && (this->transforms[i].entityID != 0))
+				{
+					ef::Components::Transform t;
+					t.init();
+					t.entityID = entityId;
+					this->transforms.push_back(t);
 					break;
 				}
 			}
-
-			ef::Components::Transform t;
-			t.init();
-			t.entityID = entityId;
-			this->transforms.push_back(t);
-
 			break;
 		}
 		
@@ -154,16 +192,37 @@ int ef::ComponentManager::addComponent(unsigned int entityId, ef::Components::co
 			{
 				if(this->motions[i].entityID == 0)
 				{
-					this->motions[i].entityID == entityId;
+					this->motions[i].entityID = entityId;
 					break;
 				}
+				else if(i+1 == this->motions.size() && this->motions[i].entityID != 0)
+				{
+					ef::Components::Motion t;
+					t.init();
+					t.entityID = entityId;
+					this->motions.push_back(t);
+				}
 			}
+			break;
+		}
 
-			ef::Components::Motion t;
-			t.init();
-			t.entityID = entityId;
-			this->motions.push_back(t);
-
+		case ef::Components::SOUND:
+		{
+			for(int i = 0; i<this->sounds.size(); i++)
+			{
+				if(this->sounds[i].entityID == 0)
+				{
+					this->sounds[i].entityID = entityId;
+					break;
+				}
+				else if(i+1 == this->sounds.size() && this->sounds[i].entityID != 0)
+				{
+					ef::Components::Sound t;
+					t.init();
+					t.entityID = entityId;
+					this->sounds.push_back(t);
+				}
+			}
 			break;
 		}
 
@@ -173,16 +232,17 @@ int ef::ComponentManager::addComponent(unsigned int entityId, ef::Components::co
 			{
 				if(this->sprites[i].entityID == 0)
 				{
-					this->sprites[i].entityID == entityId;
+					this->sprites[i].entityID = entityId;
 					break;
 				}
+				else if(i+1 == this->sprites.size() && this->sprites[i].entityID != 0)
+				{
+					ef::Components::Sprite t;
+					t.init();
+					t.entityID = entityId;
+					this->sprites.push_back(t);
+				}
 			}
-
-			ef::Components::Sprite t;
-			t.init();
-			t.entityID = entityId;
-			this->sprites.push_back(t);
-
 			break;
 		}
 	}
@@ -220,6 +280,22 @@ int ef::ComponentManager::removeComponent(unsigned int entityId, ef::Components:
 					t.init();
 
 					this->motions.at(i) = t;
+					break;
+				}
+			}
+			break;
+		}
+
+		case ef::Components::SOUND:
+		{
+			for(int i = 0; i<this->sounds.size(); i++)
+			{
+				if(this->sounds[i].entityID == entityId)
+				{
+					ef::Components::Sound t;
+					t.init();
+
+					this->sounds.at(i) = t;
 					break;
 				}
 			}

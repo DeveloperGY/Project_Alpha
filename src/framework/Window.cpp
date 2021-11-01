@@ -5,13 +5,13 @@ ef::Window::Window()
 	return;
 }
 
-int ef::Window::init(std::string title, int width, int height, bool loading)
+int ef::Window::init(std::string title, int width, int height, bool splash)
 {
 	this->width = width;
 	this->height = height;
 	this->title = title;
 
-	if(loading)
+	if(splash)
 	{
 		this->window.create(sf::VideoMode(this->width, this->height), this->title, sf::Style::None);
 	}

@@ -1,6 +1,6 @@
 #pragma once
 #include "AssetManager.hpp"
-#include "ECS.hpp"
+#include "ecs/ECS.hpp"
 
 namespace ef
 {
@@ -11,16 +11,18 @@ namespace ef
 			ef::AssetManager* am;
 
 		public:
-			/*	AudioManager Constructor
+			/*	Audio Manager Constructor
 			*
 			*/
 			AudioManager();
 
-			/*	Initializes the AudioManager
+			/*	Initializes the Audio Manager
 			*	@return Returns 0 if succeded
 			*/
 			int init(ef::ComponentManager*, ef::AssetManager*);
 
-			void play(unsigned int entityId);
+			void playSound(unsigned int entityId);
+
+			void playMusic(unsigned int entityId);
 	};
 }

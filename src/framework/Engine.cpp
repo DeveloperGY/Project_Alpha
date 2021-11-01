@@ -85,14 +85,14 @@ void ef::Engine::initGame()
 		std::cout << "Loading...\n";
 
 		clock.restart();
-		while(clock.getElapsedTime().asMilliseconds() < 5000)
+		while(clock.getElapsedTime().asMilliseconds() < 7500)
 		{
 			// buffer time to see loading window
 		}
 
 		// Set finsihed to true when game is loaded
-		finLoad = true;
 		std::cout << "Loading Complete!\n";
+		finLoad = true;
 		return;
 	};
 
@@ -105,11 +105,29 @@ void ef::Engine::initGame()
 	this->componentManager.addComponent(loadImg.getId(), ef::Components::TRANSFORM);
 	this->componentManager.addComponent(loadImg.getId(), ef::Components::SPRITE);
 
-	this->componentManager.getSprite(loadImg.getId())->textureKey = "IOTA";
+	ef::Components::Sprite* sp = this->componentManager.getSprite(loadImg.getId());
+	ef::Components::Transform* tr = this->componentManager.getTransform(loadImg.getId());
 
-	this->componentManager.getTransform(loadImg.getId())->x = 200;
-	this->componentManager.getTransform(loadImg.getId())->y = 100;
-	this->componentManager.setSpriteSize(loadImg.getId(), 400, 400);
+	if(sp == nullptr)
+	{
+		std::cout << "sp is nullptr\n";
+	}
+	else
+	{
+		sp->textureKey = "IOTA";
+	}
+
+	if(tr == nullptr)
+	{
+		std::cout << "tr is nullptr\n";
+	}
+	else
+	{
+		tr->x = 200;
+		tr->y = 100;
+	}
+
+	this->componentManager.setSpriteSize(loadImg.getId(), 400, 400);;
 
 	// Init game [thread]
 	std::thread init(load);

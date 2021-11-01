@@ -3,6 +3,8 @@
 #include "../AssetManager.hpp"
 #include <vector>
 
+#include <iostream>
+
 namespace ef
 {
 	class ComponentManager
@@ -15,6 +17,7 @@ namespace ef
 
 			std::vector<ef::Components::Transform> transforms;
 			std::vector<ef::Components::Motion> motions;
+			std::vector<ef::Components::Sound> sounds;
 			std::vector<ef::Components::Sprite> sprites;
 
 		public:
@@ -37,6 +40,11 @@ namespace ef
 			*	@return returns Component or if component doesnt exist returns nullptr
 			*/
 			ef::Components::Motion* getMotion(unsigned int entityId);
+
+			/*	Returns the specified component of an entity
+			*	@return returns Component or if component doesnt exist returns nullptr
+			*/
+			ef::Components::Sound* getSound(unsigned int entityId);
 
 			/*	Returns the specified component of an entity
 			*	@return returns Component or if component doesnt exist returns nullptr

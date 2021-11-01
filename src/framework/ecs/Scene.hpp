@@ -9,7 +9,6 @@ namespace ef
 		private:
 			std::vector<ef::Entity> entities;
 			unsigned int id;
-			// add scene id to components
 
 		public:
 			/*	Scene Constructor
