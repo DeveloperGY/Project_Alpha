@@ -85,7 +85,7 @@ void ef::Engine::initGame()
 		std::cout << "Loading...\n";
 
 		clock.restart();
-		while(clock.getElapsedTime().asMilliseconds() < 7500)
+		while(clock.getElapsedTime().asMilliseconds() < 5000)
 		{
 			// buffer time to see loading window
 		}
