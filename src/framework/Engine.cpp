@@ -32,8 +32,6 @@ int ef::Engine::init()
 	{
 		return -1;
 	}
-	
-	this->assetManager.addTexture("IOTA", "../../src/framework/imgs/iota.png"); //TODO: temp
 
 	this->running = true;
 	return 0;
@@ -114,7 +112,7 @@ void ef::Engine::initGame()
 	}
 	else
 	{
-		sp->textureKey = "IOTA";
+		sp->textureKey = "_e";
 	}
 
 	if(tr == nullptr)

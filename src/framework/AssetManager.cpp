@@ -29,7 +29,43 @@ int ef::AssetManager::init()
 	tex.loadFromImage(img);
 	this->textures.insert({"_r", tex});
 
-	// TODO: make engine/framework icon
+	sf::Color clear(0, 0, 0, 0);
+	sf::Color blue(0x5F, 0xCD, 0xE4);
+	sf::Color black(0x000000);
+	sf::Color lRed(255, 0, 0);
+	sf::Color dRed(0x78, 0, 0);
+
+	sf::Image image;
+	image.create(14, 14);
+
+	sf::Color arr[14][14] = {
+		{clear, clear, black, black, black, black, black, black, black, black, black, black, clear, clear},
+		{clear, black, blue , blue , blue , blue , blue , blue , blue , blue , blue , blue , black, clear},
+		{clear, black, blue , black, black, black, black, black, black, black, black, blue , black, clear},
+		{black, blue , blue , blue , blue , black, black, black, black, blue , blue , blue , blue , black},
+		{black, blue , blue , blue , black, lRed , dRed , dRed , lRed , black, blue , blue , blue , black},
+		{black, blue , blue , black, lRed , lRed , dRed , dRed , lRed , lRed , black, blue , blue , black},
+		{black, blue , blue , black, lRed , lRed , black, black, lRed , lRed , black, blue , blue , black},
+		{black, blue , blue , black, lRed , lRed , black, black, lRed , lRed , black, blue , blue , black},
+		{black, blue , blue , black, lRed , lRed , dRed , dRed , lRed , lRed , black, blue , blue , black},
+		{black, blue , blue , blue , black, lRed , dRed , dRed , lRed , black, blue , blue , blue , black},
+		{black, blue , blue , blue , blue , black, black, black, black, blue , blue , blue , blue , black},
+		{clear, black, blue , black, black, black, black, black, black, black, black, blue , black, clear},
+		{clear, black, blue , blue , blue , blue , blue , blue , blue , blue , blue , blue , black, clear},
+		{clear, clear, black, black, black, black, black, black, black, black, black, black, clear, clear},
+	};
+	for(int i=0; i<14; i++)
+	{
+		for(int j=0; j<14; j++)
+		{
+			image.setPixel(j, i, arr[i][j]);
+		}
+	}
+
+	sf::Texture texture;
+	texture.loadFromImage(image);
+	this->textures.insert({"_e", texture});
+
 	return 0;
 }
 
