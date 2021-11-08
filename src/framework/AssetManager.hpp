@@ -16,7 +16,7 @@ namespace ef
 	private:
 		std::map<std::string, sf::Texture> textures;
 		std::map<std::string, sf::SoundBuffer> sounds;
-		std::map<std::string, sf::Music> music;
+		std::map<std::string, std::string> music;
 
 	public:
 		/*	Asset Manager Constructor
@@ -41,6 +41,12 @@ namespace ef
 		*/
 		int addSound(std::string, std::string);
 
+		/* 	Loads a Music File into the Asset Manager. 
+		*	Be sure to set the path relative to the executable
+		*	@return Returns 0 if succeded
+		*/
+		int addMusic(std::string, std::string);
+
 		// int addMusic(std::string name, std::string path);
 
 		/*	Gets a texture from the texture map
@@ -52,5 +58,10 @@ namespace ef
 		*	@return returns a sound buffer if found or the replacement sound buffer if not
 		*/
 		sf::SoundBuffer getSound(std::string);
+
+		/*	Gets music from the music map
+		*	@return returns a music pointer if found or nullptr if not
+		*/
+		std::string getMusic(std::string);
 	};
 }

@@ -83,9 +83,9 @@ void ef::Engine::initGame()
 		std::cout << "Loading...\n";
 
 		clock.restart();
-		while(clock.getElapsedTime().asMilliseconds() < 5000)
+		while(clock.getElapsedTime().asMilliseconds() <= 5000)
 		{
-			// buffer time to see loading window
+			// temporary buffer time to see loading window
 		}
 
 		// Set finsihed to true when game is loaded
@@ -100,11 +100,11 @@ void ef::Engine::initGame()
 	ef::Entity loadImg;
 	loadImg.init();
 
-	this->componentManager.addComponent(loadImg.getId(), ef::Components::TRANSFORM);
-	this->componentManager.addComponent(loadImg.getId(), ef::Components::SPRITE);
+	this->componentManager.addComponent<ef::cp::Transform>(loadImg.getId());
+	this->componentManager.addComponent<ef::cp::Sprite>(loadImg.getId());
 
-	ef::Components::Sprite* sp = this->componentManager.getSprite(loadImg.getId());
-	ef::Components::Transform* tr = this->componentManager.getTransform(loadImg.getId());
+	ef::cp::Sprite* sp = this->componentManager.getSprite(loadImg.getId());
+	ef::cp::Transform* tr = this->componentManager.getTransform(loadImg.getId());
 
 	if(sp == nullptr)
 	{
@@ -112,7 +112,7 @@ void ef::Engine::initGame()
 	}
 	else
 	{
-		sp->textureKey = "_e";
+		sp->textureKey = "~e";
 	}
 
 	if(tr == nullptr)
@@ -121,11 +121,11 @@ void ef::Engine::initGame()
 	}
 	else
 	{
-		tr->x = 200;
-		tr->y = 100;
+		tr->x = 150;
+		tr->y = 50;
 	}
 
-	this->componentManager.setSpriteSize(loadImg.getId(), 400, 400);;
+	this->componentManager.setSpriteSize(loadImg.getId(), 500, 500);;
 
 	// Init game [thread]
 	std::thread init(load);

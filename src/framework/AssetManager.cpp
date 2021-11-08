@@ -27,7 +27,7 @@ int ef::AssetManager::init()
 
 	sf::Texture tex;
 	tex.loadFromImage(img);
-	this->textures.insert({"_r", tex});
+	this->textures.insert({"~r", tex});
 
 	sf::Color clear(0, 0, 0, 0);
 	sf::Color blue(0x5F, 0xCD, 0xE4);
@@ -54,6 +54,7 @@ int ef::AssetManager::init()
 		{clear, black, blue , blue , blue , blue , blue , blue , blue , blue , blue , blue , black, clear},
 		{clear, clear, black, black, black, black, black, black, black, black, black, black, clear, clear},
 	};
+	
 	for(int i=0; i<14; i++)
 	{
 		for(int j=0; j<14; j++)
@@ -64,7 +65,7 @@ int ef::AssetManager::init()
 
 	sf::Texture texture;
 	texture.loadFromImage(image);
-	this->textures.insert({"_e", texture});
+	this->textures.insert({"~e", texture});
 
 	return 0;
 }
@@ -87,7 +88,7 @@ int ef::AssetManager::addTexture(std::string name, std::string path)
 		{
 			//image not found
 			std::cout << "Error: Texture file not found!\n";
-			this->textures.at(name) = this->textures.at("_r");
+			this->textures.at(name) = this->textures.at("~r");
 			return -1;
 		}
 		else
@@ -129,6 +130,25 @@ int ef::AssetManager::addSound(std::string name, std::string path)
 	return 0;
 }
 
+int ef::AssetManager::addMusic(std::string name, std::string path)
+{
+	// test if name is already in the map
+	// add music to map if name is not in map
+	
+	if(this->music.find(name) != this->music.end())
+	{
+		// Music with name already exists
+		return -1;
+	}
+	else
+	{
+		this->music.insert({name, path});
+		
+		return 0;	
+	}
+	return 0;
+}
+
 sf::Texture ef::AssetManager::getTexture(std::string name)
 {
 	if(this->textures.find(name) != this->textures.end())
@@ -137,7 +157,7 @@ sf::Texture ef::AssetManager::getTexture(std::string name)
 	}
 	else
 	{
-		return this->textures.at("_r");
+		return this->textures.at("~r");
 	}
 }
 
@@ -149,7 +169,19 @@ sf::SoundBuffer ef::AssetManager::getSound(std::string name)
 	}
 	else
 	{
-		sf::SoundBuffer sound; // TODO: replace with replacement sound
+		sf::SoundBuffer sound;
 		return sound;
+	}
+}
+
+std::string ef::AssetManager::getMusic(std::string name)
+{
+	if(this->music.find(name) != this->music.end())
+	{
+		return this->music.at(name);
+	}
+	else
+	{
+		return "";
 	}
 }

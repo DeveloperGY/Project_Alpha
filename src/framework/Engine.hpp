@@ -9,10 +9,10 @@
 #include <iostream>
 
 /*	TODO:
-	Engine Icon in Asset Manager
-	Audio Player
+	Animated Sprite
 	Physics Engine
 	ECS
+	Rework component system to allow for custom components
 */
 
 namespace ef

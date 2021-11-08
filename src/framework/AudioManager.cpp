@@ -14,7 +14,7 @@ int ef::AudioManager::init(ef::ComponentManager* com, ef::AssetManager* am)
 
 void ef::AudioManager::playSound(unsigned int entityId)
 {
-	ef::Components::Sound* s = this->com->getSound(entityId);
+	ef::cp::Sound* s = this->com->getSound(entityId);
 	if(s == nullptr)
 	{
 		std::cout << "sound component not in entity\n";
@@ -23,6 +23,22 @@ void ef::AudioManager::playSound(unsigned int entityId)
 	{
 		s->sound.setBuffer(this->am->getSound(s->soundKey));
 		s->sound.play();
+	}
+	return;
+}
+
+void ef::AudioManager::playMusic(unsigned int entityId)
+{
+	sf::Music m;
+	std::string s = this->com->getMusic(entityId)->musicKey;
+	
+	if(!m.openFromFile(s))
+	{
+		std::cout << "music component not in entity or file not found\n";
+	}
+	else
+	{
+		m.play();
 	}
 	return;
 }

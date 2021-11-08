@@ -6,7 +6,7 @@
 
 namespace ef
 {
-	namespace Components
+	namespace cp
 	{
 		// enum of types of components
 		enum compID
@@ -14,8 +14,10 @@ namespace ef
 			COMPONENT,
 			TRANSFORM,
 			MOTION,
+			MUSIC,
 			SOUND,
-			SPRITE
+			SPRITE,
+			ANIMATED_SPRITE,
 		};
 
 		// Virtual struct to inherit from
@@ -26,6 +28,7 @@ namespace ef
 			/* Initialize the Component
 			*	@return Returns 0 if succeded
 			*/
+
 			virtual int init()
 			{
 				this->entityID = 0;
@@ -37,6 +40,8 @@ namespace ef
 		{
 			float x;
 			float y;
+
+			static unsigned int compID;
 
 			/* Initialize the Component
 			*	@return Returns 0 if succeded
@@ -55,6 +60,8 @@ namespace ef
 			ef::Vec2 velocity;
 			ef::Vec2 acceleration;
 
+			static unsigned int compID;
+
 			int init()
 			{
 				this->velocity.x = 0;
@@ -71,6 +78,8 @@ namespace ef
 			std::string textureKey;
 			sf::Sprite sprite;
 
+			static unsigned int compID;
+
 			int init()
 			{
 				this->textureKey = "";
@@ -79,10 +88,50 @@ namespace ef
 			}
 		};
 
+		struct AnimatedSprite: public Component
+		{
+			std::string textureKey;
+			sf::Sprite sprite;
+			ef::Vec2 frameDim;
+			int animations;
+
+			static unsigned int compID;
+
+			// void changeFrame();
+			// void changeAnim();
+			sf::Clock clock;
+
+			int init()
+			{
+				this->textureKey = "";
+				this->entityID = 0;
+				this->animations = 0;
+				this->frameDim.x = 0;
+				this->frameDim.y = 0;
+				return 0;
+			}
+		};
+
 		struct Sound: public Component
 		{
 			sf::Sound sound;
 			std::string soundKey;
+
+			static unsigned int compID;
+
+			int init()
+			{
+				this->entityID = 0;
+				return 0;
+			}
+		};
+
+		struct Music: public Component
+		{
+
+			std::string musicKey;
+
+			static unsigned int compID;
 
 			int init()
 			{

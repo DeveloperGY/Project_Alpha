@@ -17,8 +17,9 @@ int ef::Renderer::render(unsigned int entityId, ef::Window* win)
 {
 	ef::Window* renderWin = (win == nullptr) ? this->window : win;
 
-	ef::Components::Transform* t = this->componentManager->getTransform(entityId);
-	ef::Components::Sprite* s = this->componentManager->getSprite(entityId);
+	ef::cp::Transform* t = this->componentManager->getTransform(entityId);
+	ef::cp::Sprite* s = this->componentManager->getSprite(entityId);
+	
 
 	if(t == nullptr || s == nullptr)
 	{
